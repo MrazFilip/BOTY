@@ -1,0 +1,22 @@
+﻿@using BOTY.Models.Models
+
+@model LoginModel
+
+<div class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <form asp-action="Login" class="w-25 h-25">
+        <div class="p-2">
+            <div><label asp-for="Login"></label></div>
+            <div><input asp-for="Login" class="form-control" /></div>
+        </div>
+
+        <div class="p-2">
+            <div><label asp-for="Password"></label></div>
+            <div><input asp-for="Password" class="form-control" /></div>
+        </div>
+
+        <div class="p-2">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>    
+</div>     
+   

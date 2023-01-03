@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Material Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BOTY.Models.Tables
+@model Material
+
+<h1>Edit Material</h1>
+
+<form asp-action="MaterialEdit">
+    <div class="p-2">
+        <div><label asp-for="Name">Name:</label></div>
+        <div><input required asp-for="Name" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>

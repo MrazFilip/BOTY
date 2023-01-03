@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Variants";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between p-1">
+    <h1>Shoe Variants</h1>
+    <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-controller="Admin" asp-action="VariantCreate" asp-route-productId="@ViewBag.ID">Add Variant</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Sale</th>
+            <th>VAT</th>
+            <th>Stock</th>
+            <th class="text-center">EDIT</th>
+            <th class="text-center">DELETE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in @ViewBag.Variants)
+    {
+        <tr>
+            <td>@item.color</td>
+            <td>@item.size</td>
+            <td>@item.price</td>
+            <td>@item.sale</td>
+            <td>@item.vat</td>
+            <td>@item.stock</td>
+            <td class="text-center">
+                <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="VariantEdit" asp-route-variantId="@item.id" asp-route-productId="@ViewBag.ID">EDIT</a>
+            </td>
+            <td class="text-center">
+                <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="VariantDelete" asp-route-id="@item.id" asp-route-productId="@ViewBag.ID">DELETE</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Shoe Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BOTY.Models.Tables
+@model Product
+
+<h1>Create Shoe</h1>
+
+<form asp-action="ShoeCreate">
+    <div class="p-2">
+        <div><label asp-for="name">Name:</label></div>
+        <div><input required asp-for="name" class="form-control"></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="description">Description:</label></div>
+        <div><textarea required asp-for="description" class="form-control"></textarea></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="information">Information:</label></div>
+        <div><input required asp-for="information" class="form-control"></div>
+    </div>
+    <div class="p-2 d-flex justify-content-between">
+        <div>
+            <div><label asp-for="manufacturer">Manufacturer:</label></div>
+            <select required class="form-select" asp-for="manufacturer">
+                @foreach (var item in @ViewBag.Manufacturers)
+                {
+                    <option value="@item.Id">@item.logo</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="p-2 d-flex justify-content-between">
+        <div>
+            <div><label asp-for="material">Material:</label></div>
+            <select required class="form-select" asp-for="material">
+                @foreach (var item in @ViewBag.Materials)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="code">Code:</label></div>
+        <div><input required asp-for="code" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>

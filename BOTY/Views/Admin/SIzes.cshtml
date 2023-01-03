@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Sizes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BOTY.Models.Tables
+@model Size
+
+<h1>Sizes</h1>
+
+<form asp-action="SizeCreate" class="d-flex flex-row align-items-center justify-content-between">
+    <div class="p-2">
+        <div><label asp-for="description">Size:</label></div>
+        <div><input required asp-for="description" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Size</th>
+            <th class="text-center">DELETE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in @ViewBag.Sizes)
+    {
+        <tr>
+            <td class="w-75">@item.description</td>
+            <td class="text-center w-25">
+                <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="SizeDelete" asp-route-id="@item.Id">DELETE</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

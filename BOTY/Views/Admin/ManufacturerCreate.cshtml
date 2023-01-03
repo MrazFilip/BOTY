@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Manufacturer Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BOTY.Models.Tables
+@model Manufacturer
+
+<h1>Manufacturer Shoe</h1>
+
+<form asp-action="ManufacturerCreate">
+    <div class="p-2">
+        <div><label asp-for="logo">Logo:</label></div>
+        <div><input required asp-for="logo" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>
