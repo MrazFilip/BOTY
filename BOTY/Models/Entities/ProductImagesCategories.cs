@@ -13,7 +13,7 @@ namespace BOTY.Models.Entities
         public int manufacturer { get; set; }
         public int material { get; set; }
         public string code { get; set; }
-        public List<int> categories { get; set; }
-        public List<string> images { get; set; }
+        public int[] categories { get; set; }
+        public string[] images { get; set; }
     }
 }
