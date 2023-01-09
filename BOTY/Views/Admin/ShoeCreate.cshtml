@@ -3,8 +3,8 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@using BOTY.Models.Tables
-@model Product
+@using BOTY.Models.Entities
+@model ProductImagesCategories
 
 <h1>Create Shoe</h1>
 
@@ -46,6 +46,19 @@
     <div class="p-2">
         <div><label asp-for="code">Code:</label></div>
         <div><input required asp-for="code" class="form-control"></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="images">Thumbnails:</label></div>
+        <div><input asp-for="images" type="file" id="file" accept="image/*" name="file" multiple/></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="categories">Categories:</label></div>
+        <select required asp-for="categories" multiple>
+        @foreach (var item in @ViewBag.Categories)
+        {
+            <option value="@item.id">@item.name</option>
+        }
+        </select>
     </div>
     <button type="submit" class="btn btn-success">SAVE</button>
 </form>

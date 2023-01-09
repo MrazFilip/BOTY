@@ -7,7 +7,7 @@ namespace BOTY.Models
     public class MyContext : DbContext
     {
         public DbSet<Address> addresses { get; set; }
-        public DbSet<Category> catergories { get; set; }
+        public DbSet<Category> categories { get; set; }
         public DbSet<Color> colors { get; set; }
         public DbSet<Customer> customers { get; set; }
         public DbSet<Image> images { get; set; }
@@ -25,7 +25,6 @@ namespace BOTY.Models
         {
             modelBuilder.Entity<logins>().HasNoKey().ToView("logins");
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=4b1_mrazfilip_db2;user=mrazfilip;password=123456;SslMode=none");

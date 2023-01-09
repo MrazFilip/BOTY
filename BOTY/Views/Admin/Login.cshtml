@@ -1,4 +1,8 @@
-﻿@using BOTY.Models.Models
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@using BOTY.Models.Models
 
 @model LoginModel
 
@@ -11,7 +15,7 @@
 
         <div class="p-2">
             <div><label asp-for="Password"></label></div>
-            <div><input asp-for="Password" class="form-control" /></div>
+            <div><input asp-for="Password" type="password" class="form-control" /></div>
         </div>
 
         <div class="p-2">

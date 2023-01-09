@@ -14,9 +14,22 @@ namespace BOTY.Models
             return context;
         }
 
-        public async void AddProduct(Product product)
+        public async void AddProduct(ProductImagesCategories product)
         {
-            context.products.Add(product);
+            var images = product.images;
+            var categories = product.categories;
+            Product result = new() { name = product.name, code = product.code, description = product.description, information = product.information, manufacturer = product.manufacturer, material = product.material };
+            context.products.Add(result);
+            await context.SaveChangesAsync();
+            int id = context.products.ToList().Find(x => x.name == product.name).Id;
+            foreach (var item in images)
+            {
+                context.images.Add(new Image() { productId = id, image = item.Trim() });
+            }
+            foreach (var item in categories)
+            {
+                context.productCategories.Add(new ProductCategory() { productId = id, categoryId = item });
+            }
             await context.SaveChangesAsync();
         }
 
@@ -180,7 +193,21 @@ namespace BOTY.Models
             context.sizes.Remove(size);
             context.SaveChangesAsync();
         }
+        public void AddCategory(Category category)
+        {
+            context.categories.Add(category);
+            context.SaveChangesAsync();
+        }
 
+        public void DeleteCategory(Category category)
+        {
+            context.categories.Remove(category);
+            context.SaveChangesAsync();
+        }
+        public Category ReturnCategoryById(int id)
+        {
+            return ReturnContext().categories.ToList().Find(x => x.id == id);
+        }
         public List<Size> ReturnSizes(List<Variant> variants)
         {
             var sizes = ReturnContext().sizes.ToList();

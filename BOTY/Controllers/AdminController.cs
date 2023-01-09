@@ -1,4 +1,5 @@
 ﻿using BOTY.Models;
+using BOTY.Models.Entities;
 using BOTY.Models.Models;
 using BOTY.Models.Tables;
 using Microsoft.AspNetCore.Http;
@@ -65,14 +66,20 @@ namespace BOTY.Controllers
         [HttpGet]
         public IActionResult ShoeCreate()
         {
-            ViewBag.Materials = databaseModel.ReturnContext().materials;
-            ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-            Product product = new Product();
-            return View(product);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Materials = databaseModel.ReturnContext().materials;
+                ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
+                ViewBag.Categories = databaseModel.ReturnContext().categories;
+                ProductImagesCategories product = new ProductImagesCategories();
+                return View(product);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
-        public IActionResult ShoeCreate(Product product)
+        public IActionResult ShoeCreate(ProductImagesCategories product)
         {
             databaseModel.AddProduct(product);
             return RedirectToAction("Products");
@@ -81,10 +88,15 @@ namespace BOTY.Controllers
         [HttpGet]
         public IActionResult ShoeEdit(int id)
         {
-            ViewBag.Materials = databaseModel.ReturnContext().materials;
-            ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-            Product product = databaseModel.ReturnProductById(id);
-            return View(product);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Materials = databaseModel.ReturnContext().materials;
+                ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
+                Product product = databaseModel.ReturnProductById(id);
+                return View(product);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -102,15 +114,25 @@ namespace BOTY.Controllers
 
         public IActionResult Materials()
         {
-            ViewBag.Materials = databaseModel.ReturnContext().materials;
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Materials = databaseModel.ReturnContext().materials;
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpGet]
         public IActionResult MaterialCreate()
         {
-            Material product = new();
-            return View(product);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                Material product = new();
+                return View(product);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -123,8 +145,13 @@ namespace BOTY.Controllers
         [HttpGet]
         public IActionResult MaterialEdit(int id)
         {
-            Material material = databaseModel.ReturnMaterialById(id);
-            return View(material);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                Material material = databaseModel.ReturnMaterialById(id);
+                return View(material);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -142,15 +169,25 @@ namespace BOTY.Controllers
 
         public IActionResult Manufacturers()
         {
-            ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpGet]
         public IActionResult ManufacturerCreate()
         {
-            Manufacturer manufacturer = new();
-            return View(manufacturer);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                Manufacturer manufacturer = new();
+                return View(manufacturer);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -163,8 +200,13 @@ namespace BOTY.Controllers
         [HttpGet]
         public IActionResult ManufacturerEdit(int id)
         {
-            Manufacturer manufacturer = databaseModel.ReturnManufacturerById(id);
-            return View(manufacturer);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                Manufacturer manufacturer = databaseModel.ReturnManufacturerById(id);
+                return View(manufacturer);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -182,19 +224,29 @@ namespace BOTY.Controllers
 
         public IActionResult Variant(int id)
         {
-            ViewBag.ID = id;
-            ViewBag.Variants = databaseModel.ReturnFullVariants(id);
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.ID = id;
+                ViewBag.Variants = databaseModel.ReturnFullVariants(id);
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpGet]
         public IActionResult VariantCreate(int productId)
         {
-            ViewBag.ID = productId;
-            ViewBag.Colors = databaseModel.ReturnContext().colors;
-            ViewBag.Sizes = databaseModel.ReturnContext().sizes;
-            Variant variant = new Variant();
-            return View(variant);
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.ID = productId;
+                ViewBag.Colors = databaseModel.ReturnContext().colors;
+                ViewBag.Sizes = databaseModel.ReturnContext().sizes;
+                Variant variant = new Variant();
+                return View(variant);
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -207,9 +259,14 @@ namespace BOTY.Controllers
         [HttpGet]
         public IActionResult VariantEdit(int variantId, int productId)
         {
-            this.productId = productId;
-            ViewBag.Variant = databaseModel.ReturnFullVariants(variantId);
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                this.productId = productId;
+                ViewBag.Variant = databaseModel.ReturnFullVariants(variantId);
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -227,8 +284,13 @@ namespace BOTY.Controllers
 
         public IActionResult Colors()
         {
-            ViewBag.Colors = databaseModel.ReturnContext().colors;
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Colors = databaseModel.ReturnContext().colors;
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -246,8 +308,13 @@ namespace BOTY.Controllers
 
         public IActionResult Sizes()
         {
-            ViewBag.Sizes = databaseModel.ReturnContext().sizes;
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Sizes = databaseModel.ReturnContext().sizes;
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
@@ -263,14 +330,49 @@ namespace BOTY.Controllers
             return RedirectToAction("Sizes");
         }
 
+        public IActionResult Categories()
+        {
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                ViewBag.Categories = databaseModel.ReturnContext().categories;
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult CategoryCreate(Category category)
+        {
+            databaseModel.AddCategory(category);
+            return RedirectToAction("Categories");
+        }
+
+        [HttpPost]
+        public IActionResult CategoryDelete(int id)
+        {
+            databaseModel.DeleteCategory(databaseModel.ReturnCategoryById(id));
+            return RedirectToAction("Categories");
+        }
+
         public IActionResult Orders()
         {
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
 
         public IActionResult Suppliers()
         {
-            return View();
+            if (this.HttpContext.Session.GetString("login") != null)
+            {
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Admin");
         }
     }
 }

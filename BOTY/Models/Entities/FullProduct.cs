@@ -1,4 +1,5 @@
-﻿namespace BOTY.Models.Entities
+﻿
+namespace BOTY.Models.Entities
 {
     public class FullProduct
     {

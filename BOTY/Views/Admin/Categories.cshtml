@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using BOTY.Models.Tables
+@model Category
+
+<h1>Categories</h1>
+
+<form asp-action="CategoryCreate" class="d-flex flex-row align-items-center justify-content-between">
+    <div class="p-2">
+        <div><label asp-for="name">Name:</label></div>
+        <div><input required asp-for="name" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th class="text-center">DELETE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in @ViewBag.Categories)
+    {
+        <tr>
+            <td class="w-75">@item.name</td>
+            <td class="text-center w-25">
+                <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="CategoryDelete" asp-route-id="@item.id">DELETE</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
