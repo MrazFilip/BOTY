@@ -1,6 +1,8 @@
 ﻿using BOTY.Models.Entities;
 using BOTY.Models.Tables;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BOTY.Models
@@ -16,17 +18,27 @@ namespace BOTY.Models
 
         public async void AddProduct(ProductImagesCategories product)
         {
-            var images = product.images;
-            var categories = product.categories;
             Product result = new() { name = product.name, code = product.code, description = product.description, information = product.information, manufacturer = product.manufacturer, material = product.material };
             context.products.Add(result);
             await context.SaveChangesAsync();
             int id = context.products.ToList().Find(x => x.name == product.name).Id;
-            foreach (var item in images)
+            foreach (var item in product.images)
             {
-                context.images.Add(new Image() { productId = id, image = item.Trim() });
+                context.images.Add(new Image() { productId = id, image = item.FileName });
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string fileNameWithPath = Path.Combine(path, item.FileName);
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    item.CopyTo(stream);
+                }
             }
-            foreach (var item in categories)
+            foreach (var item in product.categories)
             {
                 context.productCategories.Add(new ProductCategory() { productId = id, categoryId = item });
             }
@@ -41,6 +53,16 @@ namespace BOTY.Models
 
         public async void DeleteProduct(Product product)
         {
+            var images = ReturnImagesByProductId(product.Id);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+            foreach (var item in images)
+            {
+                string fileNameWithPath = Path.Combine(path, item.image);
+                File.Delete(fileNameWithPath);
+            }
+
+            context.images.RemoveRange(images);
+            context.productCategories.RemoveRange(ReturnCategoryByProductId(product.Id));
             context.variants.RemoveRange(ReturnVariantsByProductId(product.Id));
             await context.SaveChangesAsync();
             context.products.Remove(product);
@@ -125,10 +147,33 @@ namespace BOTY.Models
             return ReturnContext().sizes.ToList().Find(x => x.Id == id);
         }
 
+        public ProductImagesCategories ReturnFullProductById(int id)
+        {
+            var product = ReturnContext().products.ToList().Find(x => x.Id == id);
+            var categories = ReturnCategoryByProductId(id);
+
+            ProductImagesCategories fullProduct = new() { Id = product.Id, name = product.name, description = product.description, code = product.code, information = product.information, manufacturer = product.manufacturer, material = product.material };
+            foreach (var item in categories)
+            {
+                fullProduct.categories.Add(item.Id);
+            }
+            return fullProduct;
+        }
+
         public List<Variant> ReturnVariantsByProductId(int id)
         {
             return ReturnContext().variants.ToList().FindAll(x => x.productId == id);
         }
+
+        public List<Image> ReturnImagesByProductId(int id)
+        {
+            return ReturnContext().images.ToList().FindAll(x => x.productId == id);
+        }
+        public List<ProductCategory> ReturnCategoryByProductId(int id)
+        {
+            return ReturnContext().productCategories.ToList().FindAll(x => x.productId == id);
+        }
+
         public Variant ReturnVariantByVariantId(int id)
         {
             return ReturnContext().variants.ToList().Find(x => x.Id == id);

@@ -1,4 +1,5 @@
 ﻿using BOTY.Models.Tables;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.IO;
 
@@ -13,7 +14,7 @@ namespace BOTY.Models.Entities
         public int manufacturer { get; set; }
         public int material { get; set; }
         public string code { get; set; }
-        public int[] categories { get; set; }
-        public string[] images { get; set; }
+        public List<int> categories { get; set; }
+        public List<IFormFile> images { get; set; }
     }
 }

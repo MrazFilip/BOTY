@@ -1,0 +1,310 @@
+﻿html {
+    font-family: "Libre Franklin", sans-serif;
+    color: white;
+    --tmave_modra: #304068;
+    --svetle_modra: #b9c2d8;
+    --cervena: #c7232f;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+body {
+    margin: 0;
+}
+
+button {
+    background: var(--cervena);
+    color: white;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+body {
+    max-width: 1200px;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+.header-bg {
+    width: 100vw;
+    height: 50px;
+    z-index: -10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--tmave_modra);
+}
+
+header {
+    display: flex;
+    height: 50px;
+    background: var(--tmave_modra);
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+    header div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+        header div a {
+            gap: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+    .top-nav div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .top-nav form {
+        display: flex;
+        flex-direction: row;
+        border: 2px solid #d6d6d6;
+        padding: 0.2rem;
+    }
+
+        .top-nav form input {
+            border: none;
+        }
+
+            .top-nav form input::placeholder {
+                color: var(--svetle_modra);
+            }
+
+            .top-nav form input:focus {
+                outline: none;
+            }
+
+.category-nav {
+    display: flex;
+    margin: 0;
+}
+
+    .category-nav a {
+        flex: 1;
+        color: var(--svetle_modra);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.2rem;
+        border: 1px solid var(--svetle_modra);
+        height: 3rem;
+        transition: 100ms;
+    }
+
+        .category-nav a:hover {
+            color: var(--cervena);
+            border: 1px solid var(--cervena);
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 2px var(--cervena);
+        }
+
+.line {
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+    justify-content: center;
+}
+
+    .line div {
+        width: 100%;
+        height: 1px;
+        background-color: var(--tmave_modra);
+    }
+
+    .line img {
+        margin: 0.5rem;
+    }
+
+.choice-bubbles {
+    margin: 1rem 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+    .choice-bubbles .panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+        .choice-bubbles .panel .bubble {
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--tmave_modra);
+        }
+
+        .choice-bubbles .panel a {
+            color: var(--tmave_modra);
+        }
+
+        .choice-bubbles .panel:hover a, .bubble {
+            color: var(--cervena);
+        }
+
+        .choice-bubbles .panel:hover .bubble {
+            background: var(--cervena);
+        }
+
+.newsletter {
+    background-image: url("/sources/Vrstva 9.png");
+    height: 351px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .newsletter h1 {
+        color: black;
+        margin: 0;
+    }
+
+    .newsletter p {
+        color: var(--svetle_modra);
+    }
+
+    .newsletter form {
+        display: flex;
+        background: white;
+    }
+
+        .newsletter form div {
+            display: flex;
+            border: 2px solid #d6d6d6;
+            padding: 0.2rem;
+        }
+
+            .newsletter form div img {
+                padding: 0.2rem;
+            }
+
+            .newsletter form div input {
+                border: none;
+            }
+
+                .newsletter form div input::placeholder {
+                    color: gray;
+                }
+
+        .newsletter form button {
+            width: 5rem;
+            font-weight: lighter;
+        }
+
+footer {
+    display: flex;
+}
+
+    footer h4 {
+        font-weight: lighter;
+        margin: 1rem 0;
+    }
+
+    footer p {
+        font-weight: lighter;
+        font-size: 0.8rem;
+    }
+
+    footer img {
+        filter: brightness(0) invert(1);
+    }
+
+    footer .left {
+        display: flex;
+        flex: 4;
+        background: var(--cervena);
+        gap: 10rem;
+        padding: 1rem 6rem;
+        flex-grow: 2;
+    }
+
+        footer .left .about, footer .left .selection {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            list-style-position: outside;
+            text-align: justify;
+        }
+
+            footer .left .selection .link-wrapper {
+                gap: 2rem;
+                display: flex;
+            }
+
+                footer .left .selection .link-wrapper ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style-position: inside;
+                }
+
+    footer .right {
+        display: flex;
+        flex: 1;
+        background: var(--tmave_modra);
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+        footer .right div, footer .right a {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        footer .right address {
+            font-weight: lighter;
+            font-size: 1rem;
+        }
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.3rem;
+}
+
+    .navigation a, .navigation p {
+        color: var(--cervena);
+    }
+
+        .navigation a:last-child {
+            color: var(--tmave_modra);
+            text-decoration: underline;
+        }

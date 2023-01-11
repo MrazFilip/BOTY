@@ -1,24 +1,53 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Variant Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h1 class="p-1">Variant Edit</h1>
 
-<h2 class="p-2">Color</h2>
-<input data="@ViewBag.color"/>
-<h2 class="p-2">Size</h2>
-<input />
-<h2 class="p-2">Size</h2>
-<input />
-<h2 class="p-2">Price</h2>
-<input />
-<h2 class="p-2">Sale</h2>
-<input />
-<h2 class="p-2">VAT</h2>
-<input />
-<h2 class="p-2">Stock</h2>
-<input />
+@using BOTY.Models.Tables
+@model Variant
 
-<button class="btn btn-dark">SAVE</button>
+<form asp-action="VariantEdit">
+    <input class="d-none" asp-for="productId" value="@ViewBag.ProductID"/>
+    <input class="d-none" asp-for="Id" value="@ViewBag.VariantID"/>
+    <div class="p-2 d-flex justify-content-between">
+        <div>
+            <div><label asp-for="colorId">Colors:</label></div>
+            <select required class="form-select" asp-for="colorId">
+                @foreach (var item in @ViewBag.Colors)
+                {
+                    <option value="@item.id">@item.name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="p-2 d-flex justify-content-between">
+        <div>
+            <div><label asp-for="sizeId">Sizes:</label></div>
+            <select required class="form-select" asp-for="sizeId">
+                @foreach (var item in @ViewBag.Sizes)
+                {
+                    <option value="@item.Id">@item.description</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="price">Price:</label></div>
+        <div><input required asp-for="price" class="form-control"></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="stock">Stock:</label></div>
+        <div><input required asp-for="stock" class="form-control"></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="sale">Sale:</label></div>
+        <div><input required asp-for="sale" class="form-control"></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="vat">VAT:</label></div>
+        <div><input required asp-for="vat" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>

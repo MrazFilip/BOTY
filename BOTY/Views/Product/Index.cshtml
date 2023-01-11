@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/styles-product.css" />
+
+<div class="navigation">
+  <a href="">Domů</a>
+  <p>></p>
+  <a href="">Dívčí boty</a>
+  <p>></p>
+  <a href="">Tenisky</a>
+</div>
+<div class="product">
+  <div class="top-part">
+    <div class="images">
+      <img src="/Files/@ViewBag.Images[0].image" alt="">
+      <div class="showcase">
+          @for(int i = 1; i < 4; i++)
+                {
+                    if(@ViewBag.ImageCount > i)
+                    {
+                        <div><img src="/Files/@ViewBag.Images[i].image" alt=""></div>
+                    } 
+                    else
+                    {
+                        <div></div>
+                    }
+                }
+      </div>
+    </div>
+    <div class="info">
+      <div class="name">
+        <h1>@ViewBag.Product.name</h1>
+        <p>@ViewBag.Product.manufacturer</p>
+      </div>
+      <p class="description">@ViewBag.Product.information</p>
+      <div class="line"></div>
+      <div class="colors-sizing">
+        <div class="color-picker">
+          <p>Barva</p>
+          <div>
+              @foreach(var item in @ViewBag.Colors)
+                        {
+                            <div class="color" style="background: #@item.code"></div>
+                        }
+                    </div>
+        </div>
+        <div class="sizing">
+          <p>Velikost</p>
+          <div>
+              @foreach(var item in @ViewBag.Sizes)
+                        {
+                            <a>@item.description</a>
+                        }
+                    </div>
+        </div>
+      </div>
+      <div class="line"></div>
+      <h1>Skladem</h1>
+      <div class="price">
+        <div>
+          <h2>@ViewBag.Variants[0].price</h2>
+          @if(@ViewBag.Variants[0].sale > 0)
+                    {
+                        <h1>@ViewBag.Variants[0].sale</h1>   
+                    }
+        </div>
+        <button class="wide-button">
+          <img src="/sources/Group 6.svg" alt="">
+          Přidat do košíku
+        </button>
+        <button class="mobile-button">
+          <img src="/sources/Group 6.svg" alt="">
+           Do košíku
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-part">
+    <div class="bottom-description">
+      <h1>Informace o produktu</h1>
+      <p>@ViewBag.Product.description</p>
+    </div>
+    <div class="parameters">
+      <table>
+        <tr>
+          <th colspan="2">Parametry produktu</th>
+        </tr>
+        <tr>
+          <td>Barva</td>
+          <td>@ViewBag.Colors[0].name</td>
+        </tr>
+        <tr>
+          <td>Druh</td>
+          <td>Do deště, turistické</td>
+        </tr>
+        <tr>
+          <td>Materiál</td>
+          <td>@ViewBag.Product.material</td>
+        </tr>
+        <tr>
+          <td>Určení</td>
+          <td>Chlapecké</td>
+        </tr>
+        <tr>
+          <td>Kód</td>
+          <td>@ViewBag.Product.code</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="line">
+  <div></div>
+  <img src="/sources/Group 295.svg" alt="">
+  <div></div>
+</div>
+<div class="recommended">
+    <div class="top-text">
+      <h1>Mohlo by se</h1>
+      <h1>Vám líbit</h1>
+    </div>
+    <div class="main-cards">
+    @for(int i = 0; i < 8; i++)
+    {
+    <card>
+        <a href=""><img src="" alt=""></a>
+        <a href="">
+          <h1>Papučky barefoot hnědé kožené</h1>
+          <div class="wrapper">
+            <div class="ceny">
+              <p>529 Kč</p>
+              <p>699 Kč</p>
+            </div>
+            <a href="">
+              <div class="icon">
+                <img src="/sources/Group 06.svg" alt="" class="cart">
+              </div>
+            </a>
+          </div>
+        </a>
+      </card>   
+    }
+    </div>
+</div>
+<div class="line">
+  <div></div>
+  <img src="/sources/Group 295.svg" alt="">
+  <div></div>
+</div>
+<div class="choice-bubbles">
+  <a href="">
+    <div class="panel">
+      <div class="bubble">
+        <img src="/sources/Group 195.svg" alt="">
+      </div>
+      <a href="">VŠE MÁME SKLADEM</a>
+    </div>
+  </a>
+  <a href="">
+    <div class="panel">
+      <div class="bubble">
+        <img src="/sources/Group 196.svg" alt="">
+      </div>
+      <a href="">DOPRAVA ZDARMA</a>
+    </div>
+  </a>
+  <a href="">
+    <div class="panel">
+      <div class="bubble">
+        <img src="/sources/Group 293.svg" alt="">
+      </div>
+      <a href="">JAK MĚŘIT VELIKOST</a>
+    </div>
+  </a>
+</div>
+<div class="newsletter">
+  <h1>Nezmeškejte nové a výhodné akce</h1>
+  <p>Zadejte svůj e-mail a obratem vám zašleme PDF s inspirací zdarma</p>
+  <form action="newsletter.php">
+    <div>
+      <img src="/sources/6-seda.png" alt="">
+      <input type="email" required placeholder="Zadej svůj email...">
+    </div>
+    <button>přihlásit</button>
+  </form>
+</div>

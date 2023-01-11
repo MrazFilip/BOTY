@@ -92,7 +92,7 @@ namespace BOTY.Controllers
             {
                 ViewBag.Materials = databaseModel.ReturnContext().materials;
                 ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-                Product product = databaseModel.ReturnProductById(id);
+                ProductImagesCategories product = databaseModel.ReturnFullProductById(id);
                 return View(product);
             }
             else
@@ -261,9 +261,13 @@ namespace BOTY.Controllers
         {
             if (this.HttpContext.Session.GetString("login") != null)
             {
-                this.productId = productId;
-                ViewBag.Variant = databaseModel.ReturnFullVariants(variantId);
-                return View();
+                ViewBag.Colors = databaseModel.ReturnContext().colors;
+                ViewBag.Sizes = databaseModel.ReturnContext().sizes;
+                Variant variant = databaseModel.ReturnVariantByVariantId(variantId);
+                ViewBag.VariantID = variant.Id;
+                ViewBag.ProductID = variant.productId;
+                this.productId = variant.productId;
+                return View(variant);
             }
             else
                 return RedirectToAction("Login", "Admin");
@@ -273,7 +277,7 @@ namespace BOTY.Controllers
         public IActionResult VariantEdit(Variant variant)
         {
             databaseModel.UpdateVariant(variant);
-            return RedirectToAction("Variant", new { id = this.productId });
+            return RedirectToAction("Variant", new { id = variant.productId });
         }
 
         public IActionResult VariantDelete(int id, int productId)

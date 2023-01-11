@@ -8,7 +8,7 @@
 
 <h1>Create Shoe</h1>
 
-<form asp-action="ShoeCreate">
+<form asp-action="ShoeCreate" enctype="multipart/form-data">
     <div class="p-2">
         <div><label asp-for="name">Name:</label></div>
         <div><input required asp-for="name" class="form-control"></div>
@@ -48,8 +48,8 @@
         <div><input required asp-for="code" class="form-control"></div>
     </div>
     <div class="p-2">
-        <div><label asp-for="images">Thumbnails:</label></div>
-        <div><input asp-for="images" type="file" id="file" accept="image/*" name="file" multiple/></div>
+        <div><label asp-for="images">Thumbnail:</label></div>
+        <div><input asp-for="images" accept="image/*" multiple="multiple"/></div>
     </div>
     <div class="p-2">
         <div><label asp-for="categories">Categories:</label></div>

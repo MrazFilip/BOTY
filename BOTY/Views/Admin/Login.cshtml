@@ -6,20 +6,33 @@
 
 @model LoginModel
 
-<div class="w-100 h-100 d-flex justify-content-center align-items-center">
-    <form asp-action="Login" class="w-25 h-25">
-        <div class="p-2">
-            <div><label asp-for="Login"></label></div>
+<div style="
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 2rem;
+height: 50vh;
+">
+    <form asp-action="Login" style="
+    height: 25%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    ">
+        <div style="padding: 0.5rem">
+            <div><label asp-for="Login" style="color: var(--tmave_modra)"></label></div>
             <div><input asp-for="Login" class="form-control" /></div>
         </div>
 
-        <div class="p-2">
-            <div><label asp-for="Password"></label></div>
+        <div style="padding: 0.5rem">
+            <div><label asp-for="Password" style="color: var(--tmave_modra)"></label></div>
             <div><input asp-for="Password" type="password" class="form-control" /></div>
         </div>
 
-        <div class="p-2">
-            <button type="submit" class="btn btn-primary">Login</button>
+        <div style="padding: 0.5rem">
+            <button type="submit" style="padding: 0.5rem 1rem">Login</button>
         </div>
     </form>    
 </div>     

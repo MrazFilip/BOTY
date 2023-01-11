@@ -4,52 +4,131 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BOTY</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
 </head>
 <body>
+    <div class="header-bg"></div>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BOTY</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-
-                        @if(!ViewBag.Authenticated)
-                        {
-                            <li class="nav-item">
-                                    <a  class="nav-link btn btn-success" asp-area="" asp-controller="Admin"  asp-action="Login">Login</a>
-                             </li> 
-                        }
-                                              
-                        
-                        
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div>
+            <a>
+                <img src="~/sources/8.svg" alt="">
+                +420 777 666 555
+            </a>
+            <p>|</p>
+            <a>
+                info@nejlepsiboty.cz
+            </a>
+        </div>
+        <div>
+            <a asp-area="" asp-controller="Admin" asp-action="Login">
+                <img src="~/sources/profile-user.svg" alt="">
+                <p>Příhlásit se</p>
+            </a>
+        </div>
     </header>
+    <nav class="top-nav">
+        <a href="home.html">
+            <img src="~/sources/Group%204.png">
+        </a>
+        <div>
+            <form action="search.php" class="search">
+                <a href="">
+                    <img src="~/sources/loupe.svg" alt="">
+                </a>
+                <input id="search" placeholder="Vyhledat zboží..." type="text">
+            </form>
+            <a href="">
+                <img src="~/sources/Group%206.svg" alt="">
+            </a>
+            <a href="">
+                <img src="~/sources/heart.svg" alt="">
+            </a>
+        </div>
+    </nav>
+    <nav class="category-nav">
+        <a href="">
+            Chlapecké
+            <img src="~/sources/Group%20169.svg">
+        </a>
+        <a href="">
+            Dívčí
+            <img src="~/sources/Group%20171.svg">
+        </a>
+        <a href="">
+            Doplňky
+        </a>
+        <a href="">
+            Ostatní
+        </a>
+        <a href="">
+            Kontakt
+        </a>
+    </nav>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - BOTY - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+    <div class="left">
+        <div class="about">
+            <h4>O NÁS</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ipsam iure minus nulla pariatur quidem veritatis! Aliquam culpa dignissimos distinctio magnam, minus perferendis possimus! Aliquid animi cum magni non reiciendis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, nostrum similique. Aspernatur illo incidunt minima neque quae quasi suscipit vero. Accusamus distinctio dolorem eius in, inventore iure labore. Accusamus, molestiae.</p>
+            <a href="home.html">
+                <img src="~/sources/Group%204.png">
+            </a>
         </div>
+        <div class="selection">
+            <h4>NAŠE NABÍDKA</h4>
+            <div class="link-wrapper">
+                <div>
+                    <h4>Dívčí</h4>
+                    <ul>
+                        <li><a href="">Tenisky</a></li>
+                        <li><a href="">Holínky</a></li>
+                        <li><a href="">Sandály</a></li>
+                        <li><a href="">Baleríny</a></li>
+                        <li><a href="">Polobotky</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Chlapecké</h4>
+                    <ul>
+                        <li><a href="">Tenisky</a></li>
+                        <li><a href="">Holínky</a></li>
+                        <li><a href="">Sandály</a></li>
+                        <li><a href="">Baleríny</a></li>
+                        <li><a href="">Polobotky</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <h4>KONTAKTUJTE NÁS</h4>
+        <a href="">
+            <img src="~/sources/6.svg" alt="">
+            <p>info@nejlepsiboty.cz</p>
+        </a>
+        <a href="">
+            <img src="~/sources/8.svg" alt="">
+            <p>+420 777 666 555</p>
+        </a>
+        <div class="socials">
+            <a href="">
+                <img src="~/sources/facebook.svg" alt="">
+            </a>
+            <a href="">
+                <img src="~/sources/Group%20153.svg" alt="">
+            </a>
+            <a href="">
+                <img src="~/sources/twitter.svg" alt="">
+            </a>
+        </div>
+        <address>Litvínovská 600, Praha 9, 190 00</address>
+    </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

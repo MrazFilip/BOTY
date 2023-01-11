@@ -5,8 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Home\Vrstva 3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\sources\01.png" />
+    <None Include="wwwroot\sources\02.png" />
+    <None Include="wwwroot\sources\03-01.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
 </Project>

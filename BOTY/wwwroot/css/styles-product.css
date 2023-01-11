@@ -1,0 +1,467 @@
+﻿.product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+    .product h1 {
+        font-size: 2.5rem;
+        color: var(--tmave_modra);
+        margin: 0;
+    }
+
+    .product .top-part {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .product .images {
+        flex: 1;
+    }
+
+        .product .images > img {
+            width: 100%;
+            border: 2px solid var(--svetle_modra);
+        }
+
+        .product .images .showcase {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+
+            .product .images .showcase img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .product .images .showcase div {
+                transition: 100ms linear;
+                object-fit: contain;
+                background: var(--cervena);
+                border: 2px solid var(--svetle_modra);
+            }
+
+            .product .images .showcase img:hover {
+                opacity: 50%;
+            }
+
+    .product .info {
+        flex: 1;
+    }
+
+    .product .name {
+        background: inherit;
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+    }
+
+        .product .name img {
+            width: 30%;
+            object-fit: contain;
+            padding: 1rem;
+        }
+
+    .product p {
+        color: var(--svetle_modra);
+        line-height: 1.4rem;
+    }
+
+    .product .description {
+        margin: 3rem 0;
+    }
+
+    .product .line {
+        height: 1px;
+        width: 100%;
+        background: var(--tmave_modra);
+    }
+
+
+    .product .colors-sizing {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .product .color-picker, .product .sizing {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product .colors-sizing p {
+        color: var(--tmave_modra);
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .product .color-picker div, .product .sizing div {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .product .color-picker .color {
+        width: 2rem;
+        height: 2rem;
+        border: 2px solid var(--svetle_modra);
+        border-radius: 50%;
+    }
+
+        .product .color-picker .color:hover {
+            cursor: pointer;
+        }
+
+    .product .sizing a {
+        text-decoration: none;
+        color: var(--tmave_modra);
+    }
+
+        .product .sizing a:hover {
+            cursor: pointer;
+        }
+
+    .product .price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 2rem 0;
+    }
+
+        .product .price h2 {
+            color: var(--svetle_modra);
+            text-decoration: line-through;
+            margin: 0;
+        }
+
+        .product .price h1 {
+            margin: 0;
+            color: var(--cervena);
+        }
+
+        .product .price .mobile-button {
+            display: none;
+        }
+
+        .product .price button img {
+            filter: brightness(0) invert(1);
+        }
+
+        .product .price button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.5rem 3rem 0.5rem 1rem;
+        }
+
+    .product .bottom-part {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .product .bottom-description {
+        text-align: justify;
+        flex: 2;
+    }
+
+        .product .bottom-description h3 {
+            color: var(--tmave_modra);
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .product .bottom-description p {
+            color: var(--tmave_modra);
+        }
+
+    .product .parameters {
+        flex: 1;
+    }
+
+        .product .parameters table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+    .product table th {
+        background: var(--tmave_modra);
+        color: white;
+        padding: 1rem;
+    }
+
+    .product table td {
+        color: var(--tmave_modra);
+        padding: 1rem;
+        width: 50%;
+    }
+
+    .product table tr td:first-child {
+        font-weight: bold;
+    }
+
+    .product table tr:nth-child(2n) {
+        background: var(--svetle_modra);
+    }
+
+.recommended .top-text {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+    .recommended .top-text h1 {
+        margin: 0 0.2rem;
+        color: var(--cervena);
+        font-weight: lighter;
+    }
+
+        .recommended .top-text h1:last-child {
+            color: var(--tmave_modra);
+            font-weight: bold;
+        }
+
+.recommended .main-cards {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.recommended .main-cards {
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+    .recommended .main-cards card {
+        border: 1px solid var(--svetle_modra);
+        display: flex;
+        flex-direction: column;
+        transition: 100ms linear;
+    }
+
+        .recommended .main-cards card img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .recommended .main-cards card h1 {
+            margin: 0;
+            padding: 0 0.5rem;
+            color: var(--tmave_modra);
+            font-weight: lighter;
+            font-size: 1.5rem;
+        }
+
+        .recommended .main-cards card .wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem;
+        }
+
+        .recommended .main-cards card .ceny {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 0.5rem;
+            font-size: 1.7rem;
+        }
+
+        .recommended .main-cards card .wrapper .ceny p:first-child {
+            color: var(--cervena);
+            font-weight: bold;
+        }
+
+        .recommended .main-cards card .wrapper .ceny p:last-child {
+            color: var(--svetle_modra);
+            text-decoration: line-through;
+        }
+
+        .recommended .main-cards card .wrapper .icon {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            visibility: hidden;
+        }
+
+            .recommended .main-cards card .wrapper .icon img {
+                height: 3rem;
+                width: 3rem;
+            }
+
+        .recommended .main-cards card:hover .wrapper .icon {
+            visibility: visible;
+        }
+
+        .recommended .main-cards card:hover {
+            border: 2px solid var(--cervena);
+            box-shadow: 0 0 5px var(--cervena);
+        }
+
+            .recommended .main-cards card:hover .wrapper .ceny {
+                transition: 100ms linear;
+                transform: scale(1.05);
+            }
+
+@media (max-width: 360px) {
+    body {
+        max-width: 320px;
+        margin: auto;
+        overflow-x: hidden;
+    }
+
+    header {
+        display: flex;
+        height: 50px;
+        background: var(--tmave_modra);
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        font-weight: lighter;
+    }
+
+        header img {
+            display: none;
+        }
+
+        header div:last-child p {
+            display: none;
+        }
+
+        header div:last-child img {
+            display: flex;
+        }
+
+    .top-nav form {
+        display: flex;
+        border: none;
+        padding: 0.2rem;
+    }
+
+        .top-nav form input {
+            display: none;
+        }
+
+    .category-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin: 0;
+    }
+
+        .category-nav a:last-child {
+            display: none;
+        }
+
+    .product .top-part {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product .info {
+        width: 100%;
+    }
+
+        .product .info .name img {
+            display: none;
+        }
+
+        .product .info .description {
+            display: none;
+        }
+
+    .product .colors-sizing {
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .product .price .wide-button {
+        display: none;
+    }
+
+    .product .price .mobile-button {
+        display: flex;
+        padding: 0.5rem;
+    }
+
+    .product .bottom-part {
+        flex-direction: column;
+    }
+
+        .product .bottom-part h1 {
+            text-align: center;
+        }
+
+    .recommended .top-text {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .recommended .main-cards {
+        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .choice-bubbles {
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: start;
+        gap: 0.5rem;
+    }
+
+    .newsletter {
+        background-image: url("Vrstva 3.png");
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+    }
+
+        footer h4 {
+            font-weight: lighter;
+            margin: 1rem 0;
+        }
+
+        footer p {
+            font-weight: lighter;
+            font-size: 0.8rem;
+        }
+
+        footer img {
+            filter: brightness(0) invert(1);
+        }
+
+        footer .left {
+            flex-direction: column;
+            display: flex;
+            flex: 4;
+            background: var(--cervena);
+            gap: 3rem;
+            padding: 1rem 4rem 1rem 1rem;
+            flex-grow: 2;
+        }
+}

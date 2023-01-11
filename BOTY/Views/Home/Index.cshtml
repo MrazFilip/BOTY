@@ -1,8 +1,134 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link rel="stylesheet" href="~/css/styles-home.css" />
+
+<div class="banner">
+    <div class="text">
+        <h4>NOVÁ DÍVČÍ KOLEKCE</h4>
+        <h4>ŠETRNÁ K DĚTSKÝM NOHÁM</h4>
+        <h1>NEJEN DO MĚSTA,</h1>
+        <h1>ALE I DO PŘÍRODY</h1>
+        <button>zobrazit produkty</button>
+    </div>
+    <div class="balls">
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+    </div>
+</div>
+<div class="cards">
+    <a>
+        <div class="text">
+            <p>KLUČIČÍ</p>
+            <p>BOTY</p>
+        </div>
+    </a>
+    <a>
+        <div class="text">
+            <p>DÍVČÍ BOTY</p>
+        </div>
+    </a>
+    <a>
+        <div class="text">
+            <p>JAK SPRÁVNĚ</p>
+            <p>VYBRAT?</p>
+        </div>
+    </a>
+</div>
+<div class="line">
+    <div></div>
+    <img src="~/sources/Group 295.svg" alt="">
+    <div></div>
+</div>
+<main>
+    <div class="top-text">
+        <h1>Nejnovější kousky</h1>
+        <h1>v naší nabídce</h1>
+    </div>
+    <div class="main-cards">
+        @for(int i = 0; i < ViewBag.Count; i++)
+        {
+         <card>
+            <a asp-controller="Product" asp-action="Index" asp-route-id="@ViewBag.Products[i].Id"><img src="/Files/@ViewBag.Images[i]" alt=""></a>
+            <a asp-controller="Product" asp-action="Index" asp-route-id="@ViewBag.Products[i].Id">
+                <h1>@ViewBag.Products[i].name</h1>
+                <div class="wrapper">
+                    <div class="ceny">
+                        @try
+                        {
+                            if(@ViewBag.Variants[i].sale > 0)
+                            {
+                                    <p>@ViewBag.Variants[i].sale</p>
+                                    <p>@ViewBag.Variants[i].price</p> 
+                                }
+                                else
+                                {
+                                    <p>@ViewBag.Variants[i].price</p>
+                                    <p></p>
+                                }  
+                        }
+                        catch
+                        {
+                            <p>N/A</p>
+                            <p></p> 
+                        }
+                    </div>
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@ViewBag.Products[i].Id">
+                        <div class="icon">
+                            <img src="/sources/Group 6.svg" alt="" class="cart">
+                        </div>
+                    </a>
+                </div>
+            </a>
+        </card>   
+        }
+    </div>
+    <div class="bottom-button">
+        <button>zobrazit celou nabídku</button>
+    </div>
+</main>
+<div class="line">
+    <div></div>
+    <img src="/sources/Group 295.svg" alt="">
+    <div></div>
+</div>
+<div class="choice-bubbles">
+    <a href="">
+        <div class="panel">
+            <div class="bubble">
+                <img src="/sources/Group 195.svg" alt="">
+            </div>
+            <a href="">VŠE MÁME SKLADEM</a>
+        </div>
+    </a>
+    <a href="">
+        <div class="panel">
+            <div class="bubble">
+                <img src="/sources/Group 196.svg" alt="">
+            </div>
+            <a href="">DOPRAVA ZDARMA</a>
+        </div>
+    </a>
+    <a href="">
+        <div class="panel">
+            <div class="bubble">
+                <img src="/sources/Group 293.svg" alt="">
+            </div>
+            <a href="">JAK MĚŘIT VELIKOST</a>
+        </div>
+    </a>
+</div>
+<div class="newsletter">
+    <h1>Nezmeškejte nové a výhodné akce</h1>
+    <p>Zadejte svůj e-mail a obratem vám zašleme PDF s inspirací zdarma</p>
+    <form action="newsletter.php">
+        <div>
+            <img src="/sources/6-seda.png" alt="">
+            <input type="email" required placeholder="Zadej svůj email...">
+        </div>
+        <button>přihlásit</button>
+    </form>
 </div>
