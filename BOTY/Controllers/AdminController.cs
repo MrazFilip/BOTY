@@ -92,7 +92,7 @@ namespace BOTY.Controllers
             {
                 ViewBag.Materials = databaseModel.ReturnContext().materials;
                 ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-                ProductImagesCategories product = databaseModel.ReturnFullProductById(id);
+                FullProduct product = databaseModel.ReturnFullProductById(id);
                 return View(product);
             }
             else

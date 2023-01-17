@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace BOTY.Models.Entities
 {
     public class FullProduct
@@ -10,5 +12,6 @@ namespace BOTY.Models.Entities
         public string manufacturer { get; set; }
         public string material { get; set; }
         public string code { get; set; }
+        public List<string> categories { get; set; }
     }
 }

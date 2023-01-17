@@ -35,6 +35,7 @@
         }
 
             .product .images .showcase img {
+                flex: 1;
                 display: block;
                 width: 100%;
                 height: 100%;
@@ -42,6 +43,7 @@
             }
 
             .product .images .showcase div {
+                flex: 1;
                 transition: 100ms linear;
                 object-fit: contain;
                 background: var(--cervena);
@@ -110,22 +112,38 @@
     .product .color-picker .color {
         width: 2rem;
         height: 2rem;
-        border: 2px solid var(--svetle_modra);
         border-radius: 50%;
     }
 
-        .product .color-picker .color:hover {
-            cursor: pointer;
-        }
+    .product .color-picker .color-unselected {
+        border: 2px solid var(--svetle_modra);
+    }
+
+    .product .color-picker .color-selected {
+        border: 2px solid var(--cervena);
+    }
+
+    .product .color-picker .color:hover {
+        cursor: pointer;
+    }
 
     .product .sizing a {
         text-decoration: none;
         color: var(--tmave_modra);
     }
 
-        .product .sizing a:hover {
-            cursor: pointer;
-        }
+    .product .sizing .size-selected {
+        text-decoration: underline;
+        color: var(--cervena);
+    }
+
+    .product .sizing a:hover {
+        cursor: pointer;
+    }
+
+    .product .sizing size-selected:hover {
+        cursor: pointer;
+    }
 
     .product .price {
         display: flex;
