@@ -23,12 +23,21 @@ height: 50vh;
     ">
         <div style="padding: 0.5rem">
             <div><label asp-for="Login" style="color: var(--tmave_modra)"></label></div>
-            <div><input asp-for="Login" class="form-control" /></div>
+            <div><input asp-for="Login" class="form-control" placeholder="Name" style="
+            border: 2px solid #d6d6d6;
+            padding: 0.2rem;
+            outline: none;
+            color: var(--tmave_modra);" />
+        </div>
         </div>
 
         <div style="padding: 0.5rem">
             <div><label asp-for="Password" style="color: var(--tmave_modra)"></label></div>
-            <div><input asp-for="Password" type="password" class="form-control" /></div>
+            <div><input asp-for="Password" type="password" class="form-control" placeholder="Password" style="
+            border: 2px solid #d6d6d6;
+            padding: 0.2rem;
+            outline: none;
+            color: var(--tmave_modra);" /></div>
         </div>
 
         <div style="padding: 0.5rem">

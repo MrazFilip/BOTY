@@ -9,7 +9,7 @@ namespace BOTY.Controllers
     public class ProductController : BaseController
     {
         DatabaseModel databaseModel = new();
-        public IActionResult Index(int id, int colorId = 0, int sizeId = 0)
+        public IActionResult Product(int id, int colorId = 0, int sizeId = 0)
         {
             var product = databaseModel.ReturnFullProductById(id);
             var images = databaseModel.ReturnImagesByProductId(id);
