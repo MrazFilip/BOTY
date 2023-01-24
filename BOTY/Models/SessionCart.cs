@@ -7,5 +7,6 @@ namespace BOTY.Models
     {
         public static List<Variant> cart = new();
         public static List<int> count = new();
+        public static int supplierId = 1;
     }
 }

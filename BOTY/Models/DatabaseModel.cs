@@ -26,7 +26,7 @@ namespace BOTY.Models
             
             var customer = new Customer()
             {
-                emailName = order.emailName,
+                email = order.emailName,
                 firstName = order.firstName,
                 lastName = order.lastName,
                 phoneNumber = order.phoneNumber
@@ -39,8 +39,8 @@ namespace BOTY.Models
 
             var newOrder = new Order()
             {
-                supplierId = order.supplierId, customerId = customerId, dateOrdered = DateTime.Now, sale = 0,
-                shippingAddressId = addressId
+                supplierId = SessionCart.supplierId, customerId = customerId, dateOrdered = DateTime.Now, dateShipped = DateTime.MinValue ,sale = 0,
+                shippingAddressId = addressId, Id = context.orders.ToList().Count + 1
             };
             context.orders.Add(newOrder);
             context.SaveChangesAsync();
@@ -61,6 +61,48 @@ namespace BOTY.Models
             
             SessionCart.cart.Clear();
             SessionCart.count.Clear();
+        }
+
+        public List<FullOrder> ReturnFullOrders()
+        {
+            var orders = context.orders.ToList();
+            var customers = context.customers.ToList();
+            var addresses = context.addresses.ToList();
+            var fullOrders = new List<FullOrder>();
+            foreach (var order in orders)
+            {
+                fullOrders.Add(new FullOrder(){firstName =  customers.Find(x => x.Id == order.customerId).firstName, lastName = customers.Find(x => x.Id == order.customerId).lastName, address = addresses.Find(x => x.id == order.Id).address});
+            }
+
+            return fullOrders;
+        }
+
+        public List<Dates_Id> ReturnDatesId()
+        {
+            var orders = context.orders.ToList();
+            var datesId = new List<Dates_Id>();
+            foreach (var order in orders)
+            {
+                datesId.Add(new Dates_Id(){dateOrdered = order.dateOrdered, dateShipped = order.dateShipped, Id = order.Id});
+            }
+
+            return datesId;
+        }
+
+        public void Ship(int id)
+        {
+            var order = context.orders.ToList().Find(x => x.Id == id);
+            if(order.dateShipped == DateTime.MinValue)
+                order.dateShipped = DateTime.Now;
+            context.orders.Update(order);
+            context.SaveChangesAsync();
+        }
+
+        public void RemoveOrder(int id)
+        {
+            var order = context.orders.ToList().Find(x => x.Id == id);
+            context.orders.Remove(order);
+            context.SaveChangesAsync();
         }
         
         public List<Supplier> ReturnAllSuppliers()

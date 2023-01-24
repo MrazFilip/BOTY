@@ -1,0 +1,168 @@
+﻿@using BOTY.Models.Tables
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/styles-products.css" />
+
+<div class="container">
+    <nav>
+        <div class="nav-item"><h1>Filtr</h1></div>
+        <div class="divider"></div>
+        <div class="nav-item">
+            <p>Výrobce:</p>
+            @foreach (var item in ViewBag.Manufacturers)
+            {
+                if(item.Id == ViewBag.Manufacturer)
+                {
+                    <a asp-action="Products" style="color: var(--cervena); text-decoration: underline;"
+                       asp-route-manufacturerId="@item.Id"
+                       asp-route-colorId="@ViewBag.Color"
+                       asp-route-sizeId="@ViewBag.Size"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@ViewBag.Material"
+                    >@item.logo</a>
+                }
+                else
+                {
+                    <a asp-action="Products"
+                       asp-route-manufacturerId="@item.Id"
+                       asp-route-colorId="@ViewBag.Color"
+                       asp-route-sizeId="@ViewBag.Size"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@ViewBag.Material"
+                    >@item.logo</a>
+                }
+            }
+        </div>
+        <div class="divider"></div>
+        <div class="nav-item">
+            <p>Barva:</p>
+            @foreach (var item in ViewBag.Colors)
+            {
+                if (item.id == ViewBag.Color)
+                {
+                    <a asp-action="Products" style="color: var(--cervena); text-decoration: underline;"
+                       asp-route-manufacturerId="@ViewBag.Manufacturer"
+                       asp-route-colorId="@item.id"
+                       asp-route-sizeId="@ViewBag.Size"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@ViewBag.Material"
+                    >@item.name</a>   
+                }
+                else
+                {
+                    <a asp-action="Products"
+                       asp-route-manufacturerId="@ViewBag.Manufacturer"
+                       asp-route-colorId="@item.id"
+                       asp-route-sizeId="@ViewBag.Size"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@ViewBag.Material"
+                    >@item.name</a>
+                }
+            }
+        </div>
+        <div class="divider"></div>
+        <div class="nav-item">
+            <p>Velikost:</p>
+            @foreach (var item in ViewBag.Sizes)
+            {
+                if (item.Id == ViewBag.Size)
+                {
+                    <a asp-action="Products" style="color: var(--cervena); text-decoration: underline;"
+                       asp-route-manufacturerId="@ViewBag.Manufacturer"
+                       asp-route-colorId="@ViewBag.Color"
+                       asp-route-sizeId="@item.Id"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@ViewBag.Material"
+                    >@item.description</a>   
+                }
+                else
+                {
+                    <a asp-action="Products" 
+                       asp-route-manufacturerId="@ViewBag.Manufacturer"
+                       asp-route-colorId="@ViewBag.Color"
+                       asp-route-sizeId="@item.Id"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@ViewBag.Material"
+                    >@item.description</a>
+                }
+            }
+        </div>
+        <div class="divider"></div>
+        <div class="nav-item">
+            <p>Materiál:</p>
+            @foreach (var item in ViewBag.Materials)
+            {
+                if (item.Id == ViewBag.Material)
+                {
+                    <a asp-action="Products" style="color: var(--cervena); text-decoration: underline;"
+                       asp-route-manufacturerId="@ViewBag.Manufacturer"
+                       asp-route-colorId="@ViewBag.Color"
+                       asp-route-sizeId="@ViewBag.Size"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@item.Id"
+                    >@item.Name</a>   
+                }
+                else
+                {
+                    <a asp-action="Products" 
+                       asp-route-manufacturerId="@ViewBag.Manufacturer"
+                       asp-route-colorId="@ViewBag.Color"
+                       asp-route-sizeId="@ViewBag.Size"
+                       asp-route-categoryId="@ViewBag.Category"
+                       asp-route-materialId="@item.Id"
+                    >@item.Name</a>
+                }
+            }
+        </div>
+    </nav>
+    <main>
+        <div style="grid-template-rows: @ViewBag.Rows !important;" class="main-cards">
+            @if (ViewBag.Count == 0)
+            {
+                <p>Nenalezeny žádné produkty</p>
+            }
+            else
+            {
+                @for (int i = 0; i < ViewBag.Count; i++)
+                {
+                    <card>
+                        <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id"><img src="/Files/@ViewBag.Images[i]" alt=""></a>
+                        <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id">
+                            <h1>@ViewBag.Products[i].name</h1>
+                            <div class="wrapper">
+                                <div class="ceny">
+                                    @try
+                                    {
+                                        if (@ViewBag.Variants[i].sale > 0)
+                                        {
+                                            <p>@ViewBag.Variants[i].sale</p>
+                                            <p>@ViewBag.Variants[i].price</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@ViewBag.Variants[i].price</p>
+                                            <p></p>
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        <p>N/A</p>
+                                        <p></p>
+                                    }
+                                </div>
+                                <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id">
+                                    <div class="icon">
+                                        <img src="/sources/Group 6.svg" alt="" class="cart">
+                                    </div>
+                                </a>
+                            </div>
+                        </a>
+                    </card>
+                }
+            }
+        </div>
+    </main>
+</div>

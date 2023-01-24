@@ -135,7 +135,6 @@ main .main-cards {
     gap: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
 }
 
     main .main-cards card {

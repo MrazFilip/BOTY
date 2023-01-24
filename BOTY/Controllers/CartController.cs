@@ -54,6 +54,7 @@ namespace BOTY.Controllers
             subtotal += _databaseModel.ReturnSupplierByID(supplierId).price;
             ViewBag.Total = subtotal;
             ViewBag.Suppliers = _databaseModel.ReturnAllSuppliers();
+            SessionCart.supplierId = supplierId;
             ViewBag.SupplierID = supplierId;
 
             return View();

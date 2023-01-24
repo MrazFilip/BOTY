@@ -44,10 +44,112 @@ namespace BOTY.Controllers
             ViewBag.Products = products;
             ViewBag.Variants = usedVariations;
             ViewBag.Images = titleImage;
-            if (products.Count < 8)
-                ViewBag.Count = products.Count();
+            ViewBag.Count = products.Count;
+            ViewBag.Rows = "1fr";
+
+            return View();
+        }
+
+        public IActionResult Products(int manufacturerId = 0, int colorId = 0, int sizeId = 0, int categoryId = 0, int materialId = 0)
+        {
+            ViewBag.Manufacturer = manufacturerId;
+            ViewBag.Color = colorId;
+            ViewBag.Size = sizeId;
+            ViewBag.Category = categoryId;
+            ViewBag.Material = materialId;
+
+            ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers.ToList();
+            ViewBag.Colors = databaseModel.ReturnContext().colors.ToList();
+            ViewBag.Sizes = databaseModel.ReturnContext().sizes.ToList();
+            ViewBag.Categories = databaseModel.ReturnContext().categories.ToList();
+            ViewBag.Materials = databaseModel.ReturnContext().materials.ToList();
+
+            var products = new List<Product>();
+            if (manufacturerId != 0 && materialId != 0)
+            {
+                products = databaseModel.ReturnContext().products.ToList().FindAll(x => x.manufacturer == manufacturerId && x.material == materialId);
+            }
+            else if(manufacturerId != 0)
+            {
+                products = databaseModel.ReturnContext().products.ToList().FindAll(x => x.manufacturer == manufacturerId);
+            }
+            else if (materialId != 0)
+            {
+                products = databaseModel.ReturnContext().products.ToList().FindAll(x => x.material == materialId);
+            }
             else
-                ViewBag.Count = 8;
+            {
+                products = databaseModel.ReturnContext().products.ToList();
+            }
+            
+            var images = databaseModel.ReturnContext().images.ToList();
+            var variations = databaseModel.ReturnContext().variants.ToList();
+            var titleImage = new List<string>();
+            var usedVariations = new List<Variant>();
+            if (products.Count > 0)
+            {
+                foreach (var item in products)
+                {
+                    foreach(var image in images)
+                    {
+                        if(image.productId == item.Id)
+                        {
+                            titleImage.Add(image.image);
+                            break;
+                        }
+                    }
+                    foreach (var variant in variations)
+                    {
+                        if (variant.productId == item.Id)
+                        {
+                            if (colorId != 0 && sizeId != 0)
+                            {
+                                if (colorId == variant.colorId && sizeId == variant.sizeId)
+                                {
+                                    usedVariations.Add(variant);
+                                }
+                                else
+                                {
+                                    products.Remove(products.Find(x => x.Id == variant.productId));
+                                }
+                            }
+                            else if (colorId != 0)
+                            {
+                                if (colorId == variant.colorId)
+                                {
+                                    usedVariations.Add(variant);  
+                                }
+                                else
+                                {
+                                    products.Remove(products.Find(x => x.Id == variant.productId));
+                                }
+                            }
+                            else if (sizeId != 0)
+                            {
+                                if (sizeId == variant.sizeId)
+                                {
+                                    usedVariations.Add(variant);  
+                                }
+                                else
+                                {
+                                    products.Remove(products.Find(x => x.Id == variant.productId));
+                                }
+                            }
+                            else
+                            {
+                                usedVariations.Add(variant);
+                            }
+                            break;
+                        }
+                    }
+                }   
+            }
+
+            ViewBag.Products = products;
+            ViewBag.Variants = usedVariations;
+            ViewBag.Images = titleImage;
+            ViewBag.Count = products.Count;
+            ViewBag.Rows = (products.Count / 4 + 1) + "fr";
 
             return View();
         }

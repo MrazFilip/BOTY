@@ -365,12 +365,28 @@ namespace BOTY.Controllers
         {
             if (this.HttpContext.Session.GetString("login") != null)
             {
+                var NamesAddresses = databaseModel.ReturnFullOrders();
+                ViewBag.DatesIds = databaseModel.ReturnDatesId();
+                ViewBag.NameAddress = NamesAddresses;
+                ViewBag.Count = NamesAddresses.Count;
                 return View();
             }
             else
                 return RedirectToAction("Login", "Admin");
         }
 
+        public IActionResult Ship(int id)
+        {
+            databaseModel.Ship(id);
+            return RedirectToAction("Orders", "Admin");
+        }
+
+        public IActionResult OrderDelete(int id)
+        {
+            databaseModel.RemoveOrder(id);
+            return RedirectToAction("Orders", "Admin");
+        }
+        
         public IActionResult Suppliers()
         {
             if (this.HttpContext.Session.GetString("login") != null)

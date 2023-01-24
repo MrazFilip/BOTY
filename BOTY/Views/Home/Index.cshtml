@@ -48,8 +48,8 @@
         <h1>Nejnovější kousky</h1>
         <h1>v naší nabídce</h1>
     </div>
-    <div class="main-cards">
-        @for(int i = 0; i < ViewBag.Count; i++)
+    <div style="grid-template-rows: @ViewBag.Rows !important;" class="main-cards">
+        @for(int i = 0; i < 4; i++)
         {
          <card>
             <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id"><img src="/Files/@ViewBag.Images[i]" alt=""></a>
@@ -87,7 +87,9 @@
         }
     </div>
     <div class="bottom-button">
-        <button>zobrazit celou nabídku</button>
+        <form>
+            <button asp-action="Products">zobrazit celou nabídku</button>
+        </form>
     </div>
 </main>
 <div class="line">

@@ -2,8 +2,6 @@
 {
     public class FullOrder
     {
-        //SUPPLIER
-        public int supplierId { get; set; }
         //CUSTOMER
         public string firstName { get; set; }
         public string lastName { get; set; }

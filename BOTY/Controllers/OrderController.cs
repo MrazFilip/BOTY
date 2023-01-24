@@ -10,9 +10,8 @@ namespace BOTY.Controllers
         private DatabaseModel _databaseModel = new();
         
         [HttpGet]
-        public IActionResult Index(int supplierId)
+        public IActionResult Index()
         {
-            ViewBag.SupplierID = supplierId;
             return View(new FullOrder());
         }
 
