@@ -119,49 +119,46 @@
         </div>
     </nav>
     <main>
-        <div style="grid-template-rows: @ViewBag.Rows !important;" class="main-cards">
-            @if (ViewBag.Count == 0)
+        <div style="grid-template-rows: @ViewBag.Rows !important; position: relative;" class="main-cards">
+            @for (int i = 0; i < ViewBag.Count; i++)
             {
-                <p>Nenalezeny žádné produkty</p>
-            }
-            else
-            {
-                @for (int i = 0; i < ViewBag.Count; i++)
-                {
-                    <card>
-                        <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id"><img src="/Files/@ViewBag.Images[i]" alt=""></a>
-                        <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id">
-                            <h1>@ViewBag.Products[i].name</h1>
-                            <div class="wrapper">
-                                <div class="ceny">
-                                    @try
+                <card>
+                    <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id"><img src="/Files/@ViewBag.Images[i]" alt=""></a>
+                    <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id">
+                        <h1>@ViewBag.Products[i].name</h1>
+                        <div class="wrapper">
+                            <div class="ceny">
+                                @try
+                                {
+                                    if (@ViewBag.Variants[i].sale > 0)
                                     {
-                                        if (@ViewBag.Variants[i].sale > 0)
-                                        {
-                                            <p>@ViewBag.Variants[i].sale</p>
-                                            <p>@ViewBag.Variants[i].price</p>
-                                        }
-                                        else
-                                        {
-                                            <p>@ViewBag.Variants[i].price</p>
-                                            <p></p>
-                                        }
+                                        <p>@ViewBag.Variants[i].sale</p>
+                                        <p>@ViewBag.Variants[i].price</p>
                                     }
-                                    catch
+                                    else
                                     {
-                                        <p>N/A</p>
+                                        <p>@ViewBag.Variants[i].price</p>
                                         <p></p>
                                     }
-                                </div>
-                                <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id">
-                                    <div class="icon">
-                                        <img src="/sources/Group 6.svg" alt="" class="cart">
-                                    </div>
-                                </a>
+                                }
+                                catch
+                                {
+                                    <p>N/A</p>
+                                    <p></p>
+                                }
                             </div>
-                        </a>
-                    </card>
-                }
+                            <a asp-controller="Product" asp-action="Product" asp-route-id="@ViewBag.Products[i].Id">
+                                <div class="icon">
+                                    <img src="/sources/Group 6.svg" alt="" class="cart">
+                                </div>
+                            </a>
+                        </div>
+                    </a>
+                </card>
+            }
+            @if(ViewBag.Count == 0)
+            {
+                <h1 style="color: var(--tmave_modra); position: absolute; left: 30%; top: 20%">Nanalezeny žádné produkty</h1>
             }
         </div>
     </main>

@@ -86,6 +86,7 @@ namespace BOTY.Controllers
             var variations = databaseModel.ReturnContext().variants.ToList();
             var titleImage = new List<string>();
             var usedVariations = new List<Variant>();
+            var toBeRemoved = new List<Product>();
             if (products.Count > 0)
             {
                 foreach (var item in products)
@@ -110,7 +111,7 @@ namespace BOTY.Controllers
                                 }
                                 else
                                 {
-                                    products.Remove(products.Find(x => x.Id == variant.productId));
+                                    toBeRemoved.Add(products.Find(x => x.Id == variant.productId));
                                 }
                             }
                             else if (colorId != 0)
@@ -121,7 +122,7 @@ namespace BOTY.Controllers
                                 }
                                 else
                                 {
-                                    products.Remove(products.Find(x => x.Id == variant.productId));
+                                    toBeRemoved.Add(products.Find(x => x.Id == variant.productId));
                                 }
                             }
                             else if (sizeId != 0)
@@ -132,7 +133,7 @@ namespace BOTY.Controllers
                                 }
                                 else
                                 {
-                                    products.Remove(products.Find(x => x.Id == variant.productId));
+                                    toBeRemoved.Add(products.Find(x => x.Id == variant.productId));
                                 }
                             }
                             else
@@ -145,6 +146,10 @@ namespace BOTY.Controllers
                 }   
             }
 
+            foreach (var item in toBeRemoved)
+            {
+                products.Remove(item);
+            }
             ViewBag.Products = products;
             ViewBag.Variants = usedVariations;
             ViewBag.Images = titleImage;
