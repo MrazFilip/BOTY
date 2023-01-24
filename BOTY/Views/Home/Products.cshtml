@@ -8,7 +8,16 @@
 
 <div class="container">
     <nav>
-        <div class="nav-item"><h1>Filtr</h1></div>
+        <div class="nav-item">
+            <h1>Filtr</h1>
+            <a asp-action="Products"
+               asp-route-manufacturerId="0"
+               asp-route-colorId="0"
+               asp-route-sizeId="0"
+               asp-route-categoryId="0"
+               asp-route-materialId="0"
+            >Reset</a>
+        </div>
         <div class="divider"></div>
         <div class="nav-item">
             <p>Výrobce:</p>
