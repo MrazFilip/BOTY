@@ -4,4 +4,41 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Suppliers</h1>
+@using BOTY.Models.Tables
+@model Supplier
+
+<h1>Couriers</h1>
+
+<form asp-action="CourierCreate" class="d-flex flex-row align-items-center justify-content-between">
+    <div class="p-2">
+        <div><label asp-for="name">Name:</label></div>
+        <div><input required asp-for="name" class="form-control"></div>
+    </div>
+    <div class="p-2">
+        <div><label asp-for="price">Price:</label></div>
+        <div><input required asp-for="price" class="form-control"></div>
+    </div>
+    <button type="submit" class="btn btn-success">SAVE</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th class="text-center">DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in @ViewBag.Couriers)
+    {
+        <tr>
+            <td class="w-75">@item.name</td>
+            <td class="w-75">@item.price</td>
+            <td class="text-center w-25">
+                <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="CourierDelete" asp-route-id="@item.id">DELETE</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

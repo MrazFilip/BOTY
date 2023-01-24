@@ -85,6 +85,8 @@ namespace BOTY.Controllers
             return RedirectToAction("Products");
         }
 
+        //TODO
+        /*
         [HttpGet]
         public IActionResult ShoeEdit(int id)
         {
@@ -92,12 +94,12 @@ namespace BOTY.Controllers
             {
                 ViewBag.Materials = databaseModel.ReturnContext().materials;
                 ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-                FullProduct product = databaseModel.ReturnFullProductById(id);
-                return View(product);
+                ProductImagesCategories product = databaseModel.ReturnFullProductById(id);
+                return View(prprooduct);
             }
             else
                 return RedirectToAction("Login", "Admin");
-        }
+        }*/
 
         [HttpPost]
         public IActionResult ShoeEdit(Product product)
@@ -373,10 +375,24 @@ namespace BOTY.Controllers
         {
             if (this.HttpContext.Session.GetString("login") != null)
             {
+                ViewBag.Couriers = databaseModel.ReturnAllSuppliers();
                 return View();
             }
             else
                 return RedirectToAction("Login", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult CourierCreate(Supplier courier)
+        {
+            databaseModel.AddSupplier(courier);
+            return RedirectToAction("Suppliers");
+        }
+
+        public IActionResult CourierDelete(int id)
+        {
+            databaseModel.DeleteSupplier(databaseModel.ReturnSupplierByID(id));
+            return RedirectToAction("Suppliers");
         }
     }
 }

@@ -1,0 +1,67 @@
+﻿.container {
+    margin: 1rem 0;
+    width: 100%;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.container input, label, h1, select {
+    color: var(--tmave_modra);
+}
+
+h1 {
+    margin: 1rem;
+}
+
+.container form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 2rem;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--svetle_modra);
+    margin: 1rem;
+}
+
+.vertical-divider {
+    flex: 0.002;
+    background-color: var(--svetle_modra);
+}
+
+.personal-info, .address {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container form div > div {
+    margin: 0.5rem;
+}
+
+input, select {
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid var(--svetle_modra);
+    outline: none;
+    height: 1.5rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border: 1px solid var(--svetle_modra);
+}
+
+.container button {
+    padding: 1rem 2rem;
+    position: absolute;
+    right: 0;
+    bottom: -2.5rem;
+    transition: 100ms linear;
+}
+
+.container button:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+}

@@ -1,4 +1,5 @@
-﻿using BOTY.Models.Entities;
+﻿using System;
+using BOTY.Models.Entities;
 using BOTY.Models.Tables;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -14,6 +15,62 @@ namespace BOTY.Models
         public MyContext ReturnContext()
         {
             return context;
+        }
+
+        public void CreateOrder(FullOrder order)
+        {
+            var address = new Address()
+                {address = order.address, city = order.city, country = order.country, postalCode = order.postalCode};
+            context.addresses.Add(address);
+            context.SaveChangesAsync();
+            
+            var customer = new Customer()
+            {
+                emailName = order.emailName,
+                firstName = order.firstName,
+                lastName = order.lastName,
+                phoneNumber = order.phoneNumber
+            };
+            context.customers.Add(customer);
+            context.SaveChangesAsync();
+
+            int addressId = context.addresses.ToList().Last().id;
+            int customerId = context.customers.ToList().Last().Id;
+
+            var newOrder = new Order()
+            {
+                supplierId = order.supplierId, customerId = customerId, dateOrdered = DateTime.Now, sale = 0,
+                shippingAddressId = addressId
+            };
+            context.orders.Add(newOrder);
+            context.SaveChangesAsync();
+
+            int orderId = context.orders.ToList().Last().Id;
+            
+            List<OrderDetails> orderDetails = new();
+            for (int i = 0; i < SessionCart.cart.Count; i++)
+            {
+                orderDetails.Add(new OrderDetails() {orderId = orderId, quantity = SessionCart.count[i], variantProductId = SessionCart.cart[i].Id});
+                if (SessionCart.cart[i].sale == 0)
+                    orderDetails.Last().Price = SessionCart.cart[i].price;
+                else
+                    orderDetails.Last().Price = SessionCart.cart[i].sale;
+            }
+            context.orderDetails.AddRange(orderDetails);
+            context.SaveChangesAsync();
+            
+            SessionCart.cart.Clear();
+            SessionCart.count.Clear();
+        }
+        
+        public List<Supplier> ReturnAllSuppliers()
+        {
+            return context.suppliers.ToList();
+        }
+
+        public Supplier ReturnSupplierByID(int id)
+        {
+            return context.suppliers.ToList().Find(x => x.id == id);
         }
 
         public async void AddProduct(ProductImagesCategories product)
@@ -291,6 +348,18 @@ namespace BOTY.Models
         public Material FindMaterial(int id)
         {
             return ReturnContext().materials.ToList().Find(x => x.Id == id);
+        }
+        
+        public void AddSupplier(Supplier supplier)
+        {
+            context.suppliers.Add(supplier);
+            context.SaveChangesAsync();
+        }
+
+        public void DeleteSupplier(Supplier supplier)
+        {
+            context.suppliers.Remove(supplier);
+            context.SaveChangesAsync();
         }
     }
 }

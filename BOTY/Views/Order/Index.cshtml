@@ -1,0 +1,59 @@
+﻿@model BOTY.Models.Entities.FullOrder
+
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="css/styles-order.css">
+
+<div class="container">
+    <form asp-action="Index">
+        <input asp-for="supplierId" value="@ViewBag.SupplierID" style="display: none">
+        <div class="personal-info">
+            <h1>Personal Information</h1>
+            <div class="divider"></div>
+            <div>
+                <label asp-for="firstName">Name:</label>
+                <input asp-for="firstName" type="text" required="required">
+            </div>
+            <div>
+                <label asp-for="lastName">Surname:</label>
+                <input asp-for="lastName" type="text" required="required">
+            </div>
+            <div>
+                <label asp-for="emailName">Email:</label>
+                <input asp-for="emailName" type="email" required="required">
+            </div>
+            <div>
+                <label asp-for="phoneNumber">Phone:</label>
+                <input asp-for="phoneNumber" type="tel" required="required">
+            </div>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="address">
+            <h1>Shipping Information</h1>
+            <div class="divider"></div>
+            <div>
+                <label asp-for="address">Address:</label>
+                <input asp-for="address" type="text" required="required">
+            </div>
+            <div>
+                <label asp-for="city">City:</label>
+                <input asp-for="city" type="text" required="required">
+            </div>
+            <div>
+                <label asp-for="postalCode">Postal Code:</label>
+                <input asp-for="postalCode" type="text" pattern="[0-9]*" required="required" value="">
+            </div>
+            <div>
+                <label asp-for="country">Country:</label>
+                <select name="country" id="country" asp-for="country" required="required">
+                    <option value="CZECH REPUBLIC" selected="selected">Czech Republic</option>
+                    <option value="Slovakia">Slovakia</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit">Objednat</button>
+    </form>
+</div>

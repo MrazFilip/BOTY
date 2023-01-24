@@ -37,7 +37,7 @@
                 </a>
                 <input id="search" placeholder="Vyhledat zboží..." type="text">
             </form>
-            <a href="">
+            <a asp-controller="Cart" asp-action="Index">
                 <img src="~/sources/Group%206.svg" alt="">
             </a>
             <a href="">
@@ -66,9 +66,7 @@
     </nav>
 
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
     <footer>

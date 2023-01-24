@@ -6,43 +6,21 @@
 
 @model LoginModel
 
-<div style="
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top: 2rem;
-height: 50vh;
-">
-    <form asp-action="Login" style="
-    height: 25%;
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    ">
-        <div style="padding: 0.5rem">
-            <div><label asp-for="Login" style="color: var(--tmave_modra)"></label></div>
-            <div><input asp-for="Login" class="form-control" placeholder="Name" style="
-            border: 2px solid #d6d6d6;
-            padding: 0.2rem;
-            outline: none;
-            color: var(--tmave_modra);" />
-        </div>
-        </div>
+<link rel="stylesheet" href="~/css/styles-login.css" />
 
-        <div style="padding: 0.5rem">
-            <div><label asp-for="Password" style="color: var(--tmave_modra)"></label></div>
-            <div><input asp-for="Password" type="password" class="form-control" placeholder="Password" style="
-            border: 2px solid #d6d6d6;
-            padding: 0.2rem;
-            outline: none;
-            color: var(--tmave_modra);" /></div>
+<div class="form-wrapper">
+    <form asp-action="Login">
+        <div class="circle">
+            <img src="~/sources/profile-user.svg" alt="">
         </div>
-
-        <div style="padding: 0.5rem">
-            <button type="submit" style="padding: 0.5rem 1rem">Login</button>
+        <div class="spacer"></div>
+        <div class="field">
+            <input asp-for="Login" class="form-control" placeholder="Name"/>
         </div>
+        <div class="field">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Password"/>
+        </div>
+        <button type="submit">Login</button>
     </form>    
 </div>     
    

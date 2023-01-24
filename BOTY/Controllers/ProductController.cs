@@ -49,9 +49,22 @@ namespace BOTY.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCard()
+        public IActionResult AddToCart(Variant variant)
         {
-            return RedirectToAction("Index");
+            for (int i = 0; i < SessionCart.cart.Count; i++)
+            {
+                if (SessionCart.cart[i].Id == variant.Id)
+                {
+                    if (SessionCart.count[i] < SessionCart.cart[i].stock)
+                    {
+                        SessionCart.count[i]++;
+                    }
+                    return RedirectToAction("Index","Cart");
+                }
+            }
+            SessionCart.cart.Add(variant);
+            SessionCart.count.Add(1);
+            return RedirectToAction("Index","Cart");
         }
     }
 }

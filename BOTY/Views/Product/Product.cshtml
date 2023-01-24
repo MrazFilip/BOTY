@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model BOTY.Models.Tables.Variant
+
 <link rel="stylesheet" href="~/css/styles-product.css" />
 
 <div class="navigation">
@@ -13,135 +15,143 @@
   <a href="">Tenisky</a>
 </div>
 <form asp-action="AddToCart">
-    <div class="product">
-      <div class="top-part">
-        <div class="images">
-          <img src="/Files/@ViewBag.Images[0].image" alt="">
-          <div class="showcase">
-              @for(int i = 1; i < 4; i++)
-                {
-                    if(@ViewBag.ImageCount > i)
-                    {
-                        <div><img src="/Files/@ViewBag.Images[i].image" alt=""></div>
-                    } 
-                    else
-                    {
-                        <div><img src="/Files/@ViewBag.Images[0].image" alt=""></div>
-                    }
-                }
-          </div>
-        </div>
-        <div class="info">
-          <div class="name">
-            <h1>@ViewBag.Product.name</h1>
-            <p>@ViewBag.Product.manufacturer</p>
-          </div>
-          <p class="description">@ViewBag.Product.information</p>
-          <div class="line"></div>
-          <div class="colors-sizing">
-            <div class="color-picker">
-              <p>Barva</p>
-              <div>
-                  @foreach(var item in @ViewBag.Colors)
-                    {
-                        if(item.id == @ViewBag.SelectedColor)
-                        {
-                            <div class="color color-selected" style="background: #@item.code"></div>
-                        }
-                        else
-                        {
-                            <a asp-action="Index" asp-route-id="@ViewBag.Id" asp-route-colorId="@item.id">
-                                <div class="color color-unselected" style="background: #@item.code"></div>
-                            </a>
-                        }
-                    }
-              </div>
-            </div>
-            <div class="sizing">
-              <p>Velikost</p>
-              <div>
-                  @foreach(var item in @ViewBag.Sizes)
-                    {
-                        if(item.Id == @ViewBag.SelectedSize)
-                        {
-                            <a class="size-selected">@item.description</a>
-                        }
-                        else
-                        {
-                            <a asp-action="Index" asp-route-id="@ViewBag.Id" asp-route-colorId="@ViewBag.SelectedColor" asp-route-sizeId="@item.Id">@item.description</a>
-                        }
-                    }
-                  </div>
-            </div>
-          </div>
-          <div class="line"></div>
-          @if(@ViewBag.SelectedVariant.stock > 0)
+  <input style="display: none" asp-for="Id" value="@ViewBag.SelectedVariant.Id"></input>
+  <input style="display: none" asp-for="productId" value="@ViewBag.Id"></input>
+  <input style="display: none" asp-for="colorId" value="@ViewBag.SelectedColor"></input>
+  <input style="display: none" asp-for="sizeId" value="@ViewBag.SelectedSize"></input>
+  <input style="display: none" asp-for="price" value="@ViewBag.SelectedVariant.price"></input>
+  <input style="display: none" asp-for="sale" value="@ViewBag.SelectedVariant.sale"></input>
+  <input style="display: none" asp-for="vat" value="@ViewBag.SelectedVariant.vat"></input>
+  <input style="display: none" asp-for="stock" value="@ViewBag.SelectedVariant.stock"></input>
+  <div class="product">
+    <div class="top-part">
+      <div class="images">
+        <img src="/Files/@ViewBag.Images[0].image" alt="">
+        <div class="showcase">
+          @for (int i = 1; i < 4; i++)
+          {
+            if (@ViewBag.ImageCount > i)
             {
-                <h1>Skladem: @ViewBag.SelectedVariant.stock</h1>
+              <div><img src="/Files/@ViewBag.Images[i].image" alt=""></div>
             }
             else
             {
-                <h1 style="color: var(--cervena)">Není Skladem</h1>
+              <div><img src="/Files/@ViewBag.Images[0].image" alt=""></div>
             }
-            <div class="price">
+          }
+        </div>
+      </div>
+      <div class="info">
+        <div class="name">
+          <h1>@ViewBag.Product.name</h1>
+          <p>@ViewBag.Product.manufacturer</p>
+        </div>
+        <p class="description">@ViewBag.Product.information</p>
+        <div class="line"></div>
+        <div class="colors-sizing">
+          <div class="color-picker">
+            <p>Barva</p>
             <div>
-              @if(@ViewBag.SelectedVariant.sale > 0)
+              @foreach (var item in @ViewBag.Colors)
+              {
+                if (item.id == @ViewBag.SelectedColor)
                 {
-                    <h2>@ViewBag.SelectedVariant.price</h2>
-                    <h1>@ViewBag.SelectedVariant.sale</h1>
+                  <div class="color color-selected" style="background: #@item.code"></div>
                 }
                 else
                 {
-                    <h2></h2>
-                    <h1>@ViewBag.SelectedVariant.price</h1>
+                  <a asp-action="Product" asp-route-id="@ViewBag.Id" asp-route-colorId="@item.id">
+                    <div class="color color-unselected" style="background: #@item.code"></div>
+                  </a>
                 }
-
+              }
             </div>
-            <button type="submit" class="wide-button">
-              <img src="/sources/Group 6.svg" alt="">
-              Přidat do košíku
-            </button>
-            <button type="submit" class="mobile-button">
-              <img src="/sources/Group 6.svg" alt="">
-               Do košíku
-            </button>
+          </div>
+          <div class="sizing">
+            <p>Velikost</p>
+            <div>
+              @foreach (var item in @ViewBag.Sizes)
+              {
+                if (item.Id == @ViewBag.SelectedSize)
+                {
+                  <a class="size-selected">@item.description</a>
+                }
+                else
+                {
+                  <a asp-action="Product" asp-route-id="@ViewBag.Id" asp-route-colorId="@ViewBag.SelectedColor" asp-route-sizeId="@item.Id">@item.description</a>
+                }
+              }
+            </div>
           </div>
         </div>
-      </div>
-      <div class="bottom-part">
-        <div class="bottom-description">
-          <h1>Informace o produktu</h1>
-          <p>@ViewBag.Product.description</p>
-        </div>
-        <div class="parameters">
-          <table>
-            <tr>
-              <th colspan="2">Parametry produktu</th>
-            </tr>
-            <tr>
-              <td>Barva</td>
-              <td>@ViewBag.Colors[0].name</td>
-            </tr>
-            <tr>
-              <td>Druh</td>
-              <td>@ViewBag.Categories</td>
-            </tr>
-            <tr>
-              <td>Materiál</td>
-              <td>@ViewBag.Product.material</td>
-            </tr>
-            <tr>
-              <td>Určení</td>
-              <td>@ViewBag.Product.categories[0]</td>
-            </tr>
-            <tr>
-              <td>Kód</td>
-              <td>@ViewBag.Product.code</td>
-            </tr>
-          </table>
+        <div class="line"></div>
+        @if (@ViewBag.SelectedVariant.stock > 0)
+        {
+          <h1>Skladem: @ViewBag.SelectedVariant.stock</h1>
+        }
+        else
+        {
+          <h1 style="color: var(--cervena)">Není Skladem</h1>
+        }
+        <div class="price">
+          <div>
+            @if (@ViewBag.SelectedVariant.sale > 0)
+            {
+              <h2>@ViewBag.SelectedVariant.price</h2>
+              <h1>@ViewBag.SelectedVariant.sale</h1>
+            }
+            else
+            {
+              <h2></h2>
+              <h1>@ViewBag.SelectedVariant.price</h1>
+            }
+
+          </div>
+          <button type="submit" class="wide-button">
+            <img src="/sources/Group 6.svg" alt="">
+            Přidat do košíku
+          </button>
+          <button type="submit" class="mobile-button">
+            <img src="/sources/Group 6.svg" alt="">
+            Do košíku
+          </button>
         </div>
       </div>
     </div>
+    <div class="bottom-part">
+      <div class="bottom-description">
+        <h1>Informace o produktu</h1>
+        <p>@ViewBag.Product.description</p>
+      </div>
+      <div class="parameters">
+        <table>
+          <tr>
+            <th colspan="2">Parametry produktu</th>
+          </tr>
+          <tr>
+            <td>Barva</td>
+            <td>@ViewBag.Colors[0].name</td>
+          </tr>
+          <tr>
+            <td>Druh</td>
+            <td>@ViewBag.Categories</td>
+          </tr>
+          <tr>
+            <td>Materiál</td>
+            <td>@ViewBag.Product.material</td>
+          </tr>
+          <tr>
+            <td>Určení</td>
+            <td>@ViewBag.Product.categories[0]</td>
+          </tr>
+          <tr>
+            <td>Kód</td>
+            <td>@ViewBag.Product.code</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </form>
 <!--
 <div class="line">

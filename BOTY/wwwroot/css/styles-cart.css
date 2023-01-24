@@ -1,1 +1,173 @@
-﻿
+﻿.container {
+    margin: 1rem 0;
+    display: flex;
+    width: 100%;
+    gap: 0.8rem;
+}
+
+.cart {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+}
+
+.vertical-divider {
+    flex: 0.005;
+    height: 100%;
+    background-color: var(--svetle_modra);
+}
+
+.container p {
+    color: var(--tmave_modra);
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--svetle_modra);
+    margin: 1rem;
+}
+
+h1 {
+    align-self: start;
+    color: var(--tmave_modra);
+    margin: 0;
+    padding: 0 2rem;
+}
+
+.row {
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.row a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row a:hover {
+    text-decoration: none;
+}
+
+.row .ball {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: var(--tmave_modra);
+    color: white;
+    text-decoration: none;
+}
+
+.row .img-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+}
+
+.row img {
+    display: block;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.row p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tmave_modra);
+    flex: 1;
+}
+
+.row .quantity {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row .quantity p {
+    flex: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.totals {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+.totals .subtotal, .shipping, .total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2rem;
+}
+
+.totals select {
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    color: var(--tmave_modra);
+}
+
+.totals select:focus {
+    border: none;
+    outline: none;
+}
+
+.totals .shipping form {
+    margin: 0;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.totals .shipping form button {
+    margin: 0;
+    padding: 0.2rem 0.2rem;
+}
+
+.totals .shipping div a {
+    color: var(--tmave_modra);
+}
+
+.container button {
+    margin: 1rem;
+    align-self: center;
+    justify-self: center;
+    padding: 1rem 2rem;
+    transition: 100ms linear;
+}
+
+.container button:hover {
+    transform: scale3d(1.05, 1.05, 1.05);
+}
+
+.container a:hover {
+    transform: scale3d(1.05, 1.05, 1.05);
+}
+
+.container a {
+    transition: 100ms linear;
+}
+
+.totals form {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}

@@ -17,7 +17,7 @@
             <th>Manufacturer</th>
             <th>Material</th>
             <th>Code</th>
-            <th class="text-center">EDIT</th>
+            <!--<th class="text-center">EDIT</th>-->
             <th class="text-center">VARIATIONS</th>
             <th class="text-center">DELETE</th>
         </tr>
@@ -29,13 +29,16 @@
         <tr>
             <td>@item.name</td>
             <td style="max-width: 200px; text-overflow:ellipsis; white-space: nowrap; overflow:hidden">@item.description</td>
-            <td>@item.information</td>
+            <td style="max-width: 200px; text-overflow:ellipsis; white-space: nowrap; overflow:hidden">@item.information</td>
             <td>@item.manufacturer</td>
             <td>@item.material</td>
             <td>@item.code</td>
+            <!--
+            TODO
             <td class="text-center">
                 <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="ShoeEdit" asp-route-id="@item.Id">EDIT</a>
             </td>
+            -->
             <td class="text-center">
                 <a class="btn btn-primary d-flex align-items-center justify-content-center" asp-area="" asp-controller="Admin" asp-action="Variant" asp-route-id="@item.Id">VARIATIONS</a>
             </td>
