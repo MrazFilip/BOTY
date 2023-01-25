@@ -365,10 +365,10 @@ namespace BOTY.Controllers
         {
             if (this.HttpContext.Session.GetString("login") != null)
             {
-                var NamesAddresses = databaseModel.ReturnFullOrders();
+                var namesAddresses = databaseModel.ReturnFullOrders();
                 ViewBag.DatesIds = databaseModel.ReturnDatesId();
-                ViewBag.NameAddress = NamesAddresses;
-                ViewBag.Count = NamesAddresses.Count;
+                ViewBag.NameAddress = namesAddresses;
+                ViewBag.Count = namesAddresses.Count;
                 return View();
             }
             else

@@ -83,7 +83,12 @@ namespace BOTY.Models
             var datesId = new List<Dates_Id>();
             foreach (var order in orders)
             {
-                datesId.Add(new Dates_Id(){dateOrdered = order.dateOrdered, dateShipped = order.dateShipped, Id = order.Id});
+                if(order.dateShipped == DateTime.MinValue)
+                    datesId.Add(new Dates_Id(){dateOrdered = order.dateOrdered.ToString(), dateShipped = "NOT SHIPPED", Id = order.Id});
+                else
+                {
+                    datesId.Add(new Dates_Id(){dateOrdered = order.dateOrdered.ToString(), dateShipped = order.dateShipped.ToString(), Id = order.Id});
+                }
             }
 
             return datesId;

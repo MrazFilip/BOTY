@@ -4,8 +4,8 @@ namespace BOTY.Models.Entities
 {
     public class Dates_Id
     {
-        public DateTime dateOrdered { get; set; }
-        public DateTime dateShipped { get; set; }
+        public string dateOrdered { get; set; }
+        public string dateShipped { get; set; }
         public int Id { get; set; }
     }
 }
