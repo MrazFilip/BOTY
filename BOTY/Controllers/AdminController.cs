@@ -70,7 +70,9 @@ namespace BOTY.Controllers
             {
                 ViewBag.Materials = databaseModel.ReturnContext().materials;
                 ViewBag.Manufacturers = databaseModel.ReturnContext().manufacturers;
-                ViewBag.Categories = databaseModel.ReturnContext().categories;
+                var categories = databaseModel.ReturnContext().categories;
+                ViewBag.Height = categories.Count() * 2 + "rem";
+                ViewBag.Categories = categories;
                 ProductImagesCategories product = new ProductImagesCategories();
                 return View(product);
             }

@@ -52,23 +52,14 @@
         <div><label asp-for="images">Thumbnail:</label></div>
         <div><input asp-for="images" accept="image/*" multiple="multiple"/></div>
     </div>
-    <div class="p-2" style="display: flex; flex-direction: column; align-items: start">
+    <div class="p-2" style="display: flex; flex-direction: column; align-items: start;">
         <div><label asp-for="categories">Categories:</label></div>
-        @foreach (var item in ViewBag.Categories)
-        {
-            <div>
-                <input type="radio" id="@item.name" value="@item.id"/>
-                <label for="@item.name">@item.name</label>
-            </div>
-        }
-        <!--
-        <select required asp-for="categories" multiple>
+        <select style="height: @ViewBag.Height; width: 20vh" required asp-for="categories" multiple>
         @foreach (var item in @ViewBag.Categories)
         {
             <option value="@item.id">@item.name</option>
         }
         </select>
-        -->
     </div>
     <button type="submit" class="btn btn-success">SAVE</button>
 </form>
